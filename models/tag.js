@@ -10,8 +10,9 @@ Tag.init({}, {
     sequelize, // We need to pass the connection instance
     modelName: 'Tag', // We need to choose the model name
     tableName: 'wink_tags',
-    timestamps: false,
-    underscored: true
+    underscored: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
 });
 
 exports.tag = Tag

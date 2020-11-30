@@ -7,14 +7,17 @@ class Post extends Model {
 }
 
 Post.init({
-        title: DataTypes.TEXT,
-        slug: DataTypes.TEXT
-    }, {
-        sequelize, // We need to pass the connection instance
-        modelName: 'Post', // We need to choose the model name
-        tableName: 'wink_posts',
-        underscored: true
-    });
+    title: DataTypes.TEXT,
+    slug: DataTypes.TEXT,
+    excerpt: DataTypes.TEXT,
+}, {
+    sequelize, // We need to pass the connection instance
+    modelName: 'Post', // We need to choose the model name
+    tableName: 'wink_posts',
+    underscored: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+});
 
 Post.belongsToMany(Tag.tag, {
     through: 'wink_posts_tags',
