@@ -1,23 +1,33 @@
-const {Model} = require('sequelize')
+const {Model, DataTypes} = require('sequelize')
 const conn = require('../connection')
+const Tag = require('./tag');
 const sequelize = conn.connection.sequelize
 
 class Post extends Model {
 }
 
-Post.init({}, {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: 'Post', // We need to choose the model name
-    tableName: 'wink_posts',
+Post.init({
+        title: DataTypes.TEXT,
+        slug: DataTypes.TEXT
+    }, {
+        sequelize, // We need to pass the connection instance
+        modelName: 'Post', // We need to choose the model name
+        tableName: 'wink_posts',
+        underscored: true
+    });
+
+Post.belongsToMany(Tag.tag, {
+    through: 'wink_posts_tags',
     timestamps: false
-});
+})
 
 exports.get = async () => {
     return await Post.findAll({
-        attributes: ['id', 'title', 'slug', 'excerpt', 'featured_image', 'publish_date'],
         where: {
             published: 1
+        },
+        include: {
+            model: Tag.tag
         }
     })
 }
