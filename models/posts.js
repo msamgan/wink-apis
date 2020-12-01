@@ -24,10 +24,22 @@ Post.belongsToMany(Tag.tag, {
     timestamps: false
 })
 
-exports.get = async () => {
+exports.allPublished = async () => {
     return await Post.findAll({
         where: {
             published: 1
+        },
+        include: {
+            model: Tag.tag
+        }
+    })
+}
+
+exports.getBySlug = async (slug) => {
+    return await Post.findOne({
+        where: {
+            published: 1,
+            slug: slug
         },
         include: {
             model: Tag.tag

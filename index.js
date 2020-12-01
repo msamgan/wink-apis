@@ -12,3 +12,4 @@ app.listen(port, () => {
 const blog = require('./controllers/blog')
 
 app.get('/', blog.index)
+app.get('/:slug', blog.post)
