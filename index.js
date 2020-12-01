@@ -6,7 +6,7 @@ const port = process.env.PORT
 
 console.log(`Node environment: ${process.env.NODE_ENV}`);
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at port http://localhost:${port}`)
 })
 
 const blog = require('./controllers/blog')

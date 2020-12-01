@@ -8,7 +8,7 @@ class Tag extends Model {
 Tag.init({}, {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: 'Tag', // We need to choose the model name
+    modelName: 'tag', // We need to choose the model name
     tableName: 'wink_tags',
     underscored: true,
     createdAt: 'created_at',

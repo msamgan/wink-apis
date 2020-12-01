@@ -12,7 +12,7 @@ Post.init({
     excerpt: DataTypes.TEXT,
 }, {
     sequelize, // We need to pass the connection instance
-    modelName: 'Post', // We need to choose the model name
+    modelName: 'post', // We need to choose the model name
     tableName: 'wink_posts',
     underscored: true,
     createdAt: 'created_at',
