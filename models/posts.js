@@ -27,11 +27,14 @@ Post.belongsToMany(Tag.tag, {
 
 Post.belongsTo(Author.author)
 
+const isPublishedScope = {
+    published: 1
+}
+
+
 exports.allPublished = async () => {
     return await Post.findAll({
-        where: {
-            published: 1
-        },
+        where: isPublishedScope,
         include: [{
             model: Author.author
         }, {
@@ -43,7 +46,6 @@ exports.allPublished = async () => {
 exports.getBySlug = async (slug) => {
     return await Post.findOne({
         where: {
-            published: 1,
             slug: slug
         },
         include: [{
@@ -56,9 +58,7 @@ exports.getBySlug = async (slug) => {
 
 exports.getByTag = async (tagSlug) => {
     return await Post.findAll({
-        where: {
-            published: 1,
-        },
+        where: isPublishedScope,
         include: [{
             model: Author.author
         }, {
