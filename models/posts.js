@@ -35,6 +35,9 @@ const isPublishedScope = {
 exports.allPublished = async () => {
     return await Post.findAll({
         where: isPublishedScope,
+        order: [
+            ['created_at', 'DESC']
+        ],
         include: [{
             model: Author.author
         }, {
@@ -59,6 +62,9 @@ exports.getBySlug = async (slug) => {
 exports.getByTag = async (tagSlug) => {
     return await Post.findAll({
         where: isPublishedScope,
+        order: [
+            ['created_at', 'DESC']
+        ],
         include: [{
             model: Author.author
         }, {

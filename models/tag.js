@@ -22,7 +22,11 @@ exports.tag = Tag
 
 
 exports.all = async () => {
-    return await Tag.findAll()
+    return await Tag.findAll({
+        order: [
+            ['name', 'ASC']
+        ],
+    })
 }
 
 
