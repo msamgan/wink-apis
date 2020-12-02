@@ -9,7 +9,7 @@ exports.index = async (req, res) => {
 }
 
 exports.post = async (req, res) => {
-    let post = await Post.getBySlug(req.param('slug'))
+    let post = await Post.getBySlug(req.params.slug)
 
     if (!post) {
         res.status(404).send(methods.notFountResponse);
@@ -18,5 +18,12 @@ exports.post = async (req, res) => {
     res.send(methods.successResponse(
         'Post details',
         post
+    ))
+}
+
+exports.byTag = async (req, res) => {
+    res.send(methods.successResponse(
+        'list of all the published posts by tag',
+        await Post.getByTag(req.params.slug)
     ))
 }

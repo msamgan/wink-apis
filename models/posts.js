@@ -1,6 +1,7 @@
 const {Model, DataTypes} = require('sequelize')
 const conn = require('../connection')
 const Tag = require('./tag');
+const Author = require('./author');
 const sequelize = conn.connection.sequelize
 
 class Post extends Model {
@@ -24,14 +25,18 @@ Post.belongsToMany(Tag.tag, {
     timestamps: false
 })
 
+Post.belongsTo(Author.author)
+
 exports.allPublished = async () => {
     return await Post.findAll({
         where: {
             published: 1
         },
-        include: {
+        include: [{
+            model: Author.author
+        }, {
             model: Tag.tag
-        }
+        }]
     })
 }
 
@@ -41,9 +46,27 @@ exports.getBySlug = async (slug) => {
             published: 1,
             slug: slug
         },
-        include: {
+        include: [{
+            model: Author.author
+        }, {
             model: Tag.tag
-        }
+        }]
+    })
+}
+
+exports.getByTag = async (tagSlug) => {
+    return await Post.findAll({
+        where: {
+            published: 1,
+        },
+        include: [{
+            model: Author.author
+        }, {
+            model: Tag.tag,
+            where: {
+                slug: tagSlug
+            }
+        }]
     })
 }
 
