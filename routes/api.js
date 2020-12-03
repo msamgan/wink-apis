@@ -1,18 +1,15 @@
-const blog = require('../controllers/blog')
-const tag = require('../controllers/tag')
-const page = require('../controllers/page')
+const Blog = require('../controllers/blog')
 
+const tags = require('./custom/tags')
+const pages = require('./custom/pages')
 
-module.exports = function(app){
+module.exports = function (app) {
     /**
      * static URLS to be on top..
      */
+    app.get('/', Blog.index)
+    app.get('/:slug', Blog.post)
 
-    app.get('/', blog.index)
-    app.get('/tags', tag.index)
-    app.get('/pages', page.index)
-
-    app.get('/:slug', blog.post)
-    app.get('/tag/:slug', blog.byTag)
-    app.get('/page/:slug', page.page)
+    app.use('/tag', tags)
+    app.use('/page', pages)
 }

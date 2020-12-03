@@ -15,6 +15,6 @@ async function testMysqlConnection() {
     }
 }
 
-testMysqlConnection()
+testMysqlConnection().then()
 
 module.exports = sequelize;
