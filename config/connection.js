@@ -15,10 +15,6 @@ async function testMysqlConnection() {
     }
 }
 
-testMysqlConnection().then()
+testMysqlConnection()
 
-const connection = {
-    sequelize: sequelize
-}
-
-exports.connection = connection;
+module.exports = sequelize;

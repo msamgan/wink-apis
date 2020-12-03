@@ -1,6 +1,5 @@
 const {Model, DataTypes} = require('sequelize')
-const conn = require('../connection')
-const sequelize = conn.connection.sequelize
+const sequelize = require('../config/connection')
 
 class Tag extends Model {
 }
@@ -19,7 +18,6 @@ Tag.init({
 });
 
 exports.tag = Tag
-
 
 exports.all = async () => {
     return await Tag.findAll({

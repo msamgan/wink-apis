@@ -1,6 +1,5 @@
 const {Model, DataTypes} = require('sequelize')
-const conn = require('../connection')
-const sequelize = conn.connection.sequelize
+const sequelize = require('../config/connection')
 
 class Author extends Model {
 }
